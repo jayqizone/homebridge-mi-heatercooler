@@ -69,9 +69,9 @@ npm i -g miio homebridge homebridge-mi-heatercooler
 
 ## Extra
 
-Supports most of brands set 1 solution
+Auto supports most of brands set 1 solution
 
-otherwise, you should use an Android simulator (like [BlueStacks](http://www.bluestacks.com)) and [Wireshark](https://www.wireshark.org) to collect and analyze your AC partner command codes by `miio --token yourACPartnerToken --json-dump packetFile`, then modify template.json in plugin directory
+Otherwise, you should use an Android simulator (like [BlueStacks](http://www.bluestacks.com)) and [Wireshark](https://www.wireshark.org) to collect and analyze your AC partner command codes by `miio --token yourACPartnerToken --json-dump packetFile`, then modify template.json in plugin directory
 
 ```
 {
@@ -86,7 +86,7 @@ otherwise, you should use an Android simulator (like [BlueStacks](http://www.blu
 
 The key is your current AC partner solution model, you can get it by `miio --control yourACPartnerIP --method get_model_and_state`
 
-"tpl" is this model's command template, you can use ES 6 Template Literals with these params
+"tpl" is this model's command template, you can use ES 6 Template Literals with these params:
 
 ```js
 /**
