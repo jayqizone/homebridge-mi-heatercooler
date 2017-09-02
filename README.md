@@ -86,7 +86,7 @@ otherwise, you should use an Android simulator (like [BlueStacks](http://www.blu
 
 The key is your current AC partner solution model, you can get it by `miio --control yourACPartnerIP --method get_model_and_state`
 
-"tpl" is this model's command template, you can use ES 6 Template Literals with this params
+"tpl" is this model's command template, you can use ES 6 Template Literals with these params
 
 ```js
 /**
