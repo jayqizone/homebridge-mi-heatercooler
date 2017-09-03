@@ -141,7 +141,7 @@ class MiHeaterCooler {
 
                 this.syncState();
             })
-            .catch(this.log.error);
+            .catch(err => this.log.error(err));
     }
 
     syncState() {
@@ -215,10 +215,8 @@ class MiHeaterCooler {
             });
 
         Promise.all([p1, p2])
-            .catch(this.log.error)
-            .then(() => {
-                setTimeout(this.syncState.bind(this), this.syncInterval);
-            });
+            .catch(err => this.log.error(err))
+            .then(() => setTimeout(this.syncState.bind(this), this.syncInterval));
     }
 
     /* sometimes HomeKit sets several props at the same time, and thus sends command more than once. try to avoid it */
@@ -258,7 +256,7 @@ class MiHeaterCooler {
 
             cmd = this._genCmd(active, mode, speed, swing, temperature, temperature.toString(16), led);
             this.device.call('send_cmd', [cmd])
-                .catch(this.log.error)
+                .catch(err => this.log.error(err))
                 .then(() => this.syncLock = false);
         } else {
             this.syncLock = false;
