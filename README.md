@@ -21,6 +21,8 @@ Mi / Aqara AC partner plugin for [Homebridge](https://github.com/nfarina/homebr
   - 4 : auto
 - Oscillate
 
+![](https://raw.githubusercontent.com/jayqizone/homebridge-mi-heatercooler/master/images/control.PNG)
+
 ### Display
 
 - Sync state with AC partner
@@ -34,6 +36,8 @@ Mi / Aqara AC partner plugin for [Homebridge](https://github.com/nfarina/homebr
 - Current temperature & humidity
   - if set sensorId in config
   - would add a humidity sensor in Home app
+
+![](https://raw.githubusercontent.com/jayqizone/homebridge-mi-heatercooler/master/images/state.PNG)
 
 ## Installation
 
@@ -71,7 +75,7 @@ npm i -g miio homebridge homebridge-mi-heatercooler
 
 Auto supports most of brands set 1 solution
 
-Otherwise, you should use an Android simulator (like [BlueStacks](http://www.bluestacks.com)) and [Wireshark](https://www.wireshark.org) to collect and analyze your AC partner command codes by `miio --token yourACPartnerToken --json-dump packetFile`, then modify template.json in plugin directory
+Otherwise, you should use an Android simulator (like [BlueStacks](http://www.bluestacks.com)) and [Wireshark](https://www.wireshark.org) to collect and analyze your AC partner command codes by `miio --token yourACPartnerToken --json-dump packetFile`, then modify `template.json` in plugin directory
 
 ```
 {
