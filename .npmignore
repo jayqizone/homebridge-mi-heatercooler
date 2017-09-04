@@ -1,0 +1,11 @@
+# images
+.images
+
+# git
+.gitattributes
+
+# macOS
+.DS_Store
+
+# idea
+.idea
