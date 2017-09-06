@@ -199,7 +199,7 @@ class MiHeaterCooler {
 
                     if (this.ratedPower) {
                         this.ChargingState.updateValue(Characteristic.ChargingState.CHARGING);
-                        this.BatteryLevel.updateValue(Number(100 * power / this.ratedPower).toFixed(1));
+                        this.BatteryLevel.updateValue((100 * power / this.ratedPower).toFixed(1));
                     }
                 }
             });
@@ -210,8 +210,8 @@ class MiHeaterCooler {
                     humidity = props[1],
                     pressure = props[2];
 
-                this.CurrentTemperature.updateValue(Number(temperature / 100).toFixed(1));
-                this.CurrentRelativeHumidity.updateValue(Number(humidity / 100).toFixed(0));
+                this.CurrentTemperature.updateValue((temperature / 100).toFixed(1));
+                this.CurrentRelativeHumidity.updateValue((humidity / 100).toFixed(0));
             });
 
         Promise.all([p1, p2])
