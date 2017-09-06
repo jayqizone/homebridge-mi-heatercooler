@@ -94,12 +94,20 @@ The key is your current AC partner solution model, you can get it by `miio --con
 
 ```js
 /**
-  * @param p number power, 0 : off, 1 : on
-  * @param m number mode, 0 : heat, 1 : cool, 2 : auto
-  * @param w number wind speed, 0 : low, 1 : medium, 2 : high, 3 : auto
-  * @param s number swing, 0 : enabled, 1 : disabled
-  * @param td number temperature, decimal
-  * @param th string temperature, hexadecimal
-  * @param l number led, always be 1 so far
-  */
+ * generate command
+ *
+ * if your ac partner sends commands like 01xxxxxxxxpmwstlx (most of brands set 1 do)
+ * then you don't need template config
+ *
+ * template uses ES 6 Template Literals to generate commands
+ * supports +, -, *, /, %, ?:, [], toString(16) and so on
+ *
+ * @param p number power, 0 : off, 1 : on
+ * @param m number mode, 0 : heat, 1 : cool, 2 : auto
+ * @param w number wind speed, 0 : low, 1 : medium, 2 : high, 3 : auto
+ * @param s number swing, 0 : enabled, 1 : disabled
+ * @param td number temperature, decimal
+ * @param th string temperature, hexadecimal
+ * @param l number led, always be 1 so far
+ */
 ```
