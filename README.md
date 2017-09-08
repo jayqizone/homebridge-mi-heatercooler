@@ -20,6 +20,8 @@ Mi / Aqara AC partner plugin for [Homebridge](https://github.com/nfarina/homebr
   - 3 : high
   - 4 : auto
 - Oscillate
+- LED
+  - if set enableLED in config
 
 ![](https://raw.githubusercontent.com/jayqizone/homebridge-mi-heatercooler/master/images/control.PNG)
 
@@ -55,7 +57,8 @@ npm i -g miio homebridge homebridge-mi-heatercooler
     "name": "AC Partner",
     "address": "192.168.1.154",
     "sensorId": "158d0001a4c582",
-    "ratedPower": 735
+    "enableLED": true,
+    "ratedPower": 735
   },
   ...
 ]
@@ -68,8 +71,9 @@ npm i -g miio homebridge homebridge-mi-heatercooler
 |`name`       |unique name                                                                          |    ✓   |
 |`address`    |your AC partner ip address                                                           |    ✓   |
 |`sensorId`   |humidity-temperature sensor (bound to your AC partner) id. run `miio --control yourACPartnerIP --method get_device_prop --params '["lumi.0", "device_list"]'` to get it (without 'lumi.' prefix)            |        |
+|`enableLED`  |true or 'true' to enable LED control                                                 |        |
 |`ratedPower` |Watt, your AC Normal Rated Power, used for displaying power percent by battery level |        |
-|`idlePower`  |Watt, determine whether current working state is idle, default value is 100          |        |
+|`idlePower`  |Watt, determine whether current working state is idle, default value is 100          |        |
 
 ## Extra
 
@@ -108,6 +112,6 @@ The key is your current AC partner solution model, you can get it by `miio --con
  * @param s number swing, 0 : enabled, 1 : disabled
  * @param td number temperature, decimal
  * @param th string temperature, hexadecimal
- * @param l number led, always be 1 so far
+ * @param l string led, '0' : off, 'a' : on
  */
 ```
