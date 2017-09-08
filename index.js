@@ -18,6 +18,7 @@ class MiHeaterCooler {
         this.name = config.name || 'AC Partner';
         this.token = config.token;
         this.address = config.address;
+        this.enableLED = config.enableLED + '' === 'true'; // enable led control
         this.sensorId = config.sensorId; // humidity-temperature-pressure sensor id
         this.ratedPower = config.ratedPower; // Watt, used for fake BatteryService
         this.idlePower = config.idlePower || 100; // Watt, determine whether CurrentHeaterCoolerState is idle
@@ -38,6 +39,7 @@ class MiHeaterCooler {
         this.CurrentHeaterCoolerState;
         this.CurrentTemperature;
 
+        this.LED;
         this.CurrentRelativeHumidity;
         this.ChargingState; // Characteristic.ChargingState.CHARGING so far, means wired
         this.BatteryLevel; // display power by this, equals 100 * power / this.ratedPower
@@ -68,14 +70,19 @@ class MiHeaterCooler {
         this.acService = new Service.HeaterCooler(this.name);
         this.services.push(this.acService);
 
-        if (this.ratedPower) {
-            this.batteryService = new Service.BatteryService(this.name);
-            this.services.push(this.batteryService);
+        if (this.enableLED) {
+            this.ledService = new Service.Lightbulb(this.name);
+            this.services.push(this.ledService);
         }
 
         if (this.sensorId) {
             this.humidityService = new Service.HumiditySensor(this.name);
             this.services.push(this.humidityService);
+        }
+
+        if (this.ratedPower) {
+            this.powerService = new Service.BatteryService(this.name);
+            this.services.push(this.powerService);
         }
 
         this.serviceInfo = new Service.AccessoryInformation();
@@ -124,13 +131,18 @@ class MiHeaterCooler {
 
         this.CurrentTemperature = this.acService.getCharacteristic(Characteristic.CurrentTemperature);
 
+        if (this.enableLED) {
+            this.LED = this.ledService.getCharacteristic(Characteristic.On)
+                .on('set', this._setLED.bind(this));
+        }
+
         if (this.sensorId) {
             this.CurrentRelativeHumidity = this.humidityService.getCharacteristic(Characteristic.CurrentRelativeHumidity);
         }
 
         if (this.ratedPower) {
-            this.ChargingState = this.batteryService.getCharacteristic(Characteristic.ChargingState);
-            this.BatteryLevel = this.batteryService.getCharacteristic(Characteristic.BatteryLevel);
+            this.ChargingState = this.powerService.getCharacteristic(Characteristic.ChargingState);
+            this.BatteryLevel = this.powerService.getCharacteristic(Characteristic.BatteryLevel);
         }
     }
 
@@ -193,6 +205,10 @@ class MiHeaterCooler {
                         this.CurrentHeaterCoolerState.updateValue(Characteristic.CurrentHeaterCoolerState.IDLE);
                     }
 
+                    if (this.enableLED) {
+                        this.LED.updateValue(led.toLowerCase() === 'a');
+                    }
+
                     if (!this.sensorId) {
                         this.CurrentTemperature.updateValue(temperature);
                     }
@@ -237,7 +253,7 @@ class MiHeaterCooler {
             active = this.Active.value;
             speed = this.RotationSpeed.value - 1;
             swing = 1 - this.SwingMode.value;
-            led = 1;
+            led = this.enableLED ? (this.LED.value ? 'a' : '0') : '1';
 
             switch (this.TargetHeaterCoolerState.value) {
                 case Characteristic.TargetHeaterCoolerState.AUTO:
@@ -278,7 +294,7 @@ class MiHeaterCooler {
      * @param s number swing, 0 : enabled, 1 : disabled
      * @param td number temperature, decimal
      * @param th string temperature, hexadecimal
-     * @param l number led, always be 1 so far
+     * @param l string led, '0' : off, 'a' : on
      */
     _genCmd(p, m, w, s, td, th, l) {
         let cmd;
@@ -351,6 +367,12 @@ class MiHeaterCooler {
     }
 
     _setSwingMode(SwingMode, callback) {
+        callback();
+
+        this.sendCmdAsync();
+    }
+
+    _setLED(LED, callback) {
         callback();
 
         this.sendCmdAsync();
