@@ -53,9 +53,9 @@ npm i -g miio homebridge homebridge-mi-heatercooler
 "accessories": [
   {
     "accessory": "MiHeaterCooler",
-    "token": "71b4e85d8527aab32c8f9175124c0d59",
     "name": "AC Partner",
     "address": "192.168.1.154",
+    "token": "71b4e85d8527aab32c8f9175124c0d59",
     "sensorId": "158d0001a4c582",
     "enableLED": true,
     "ratedPower": 735
@@ -67,9 +67,9 @@ npm i -g miio homebridge homebridge-mi-heatercooler
 |  Parameter  |                                     Description                                     |Required|
 |-------------|-------------------------------------------------------------------------------------|:------:|
 |`accessory`  |"MiHeaterCooler"                                                                     |    ✓   |
-|`token`      |run `miio --discover` to get it                                                      |    ✓   |
 |`name`       |unique name                                                                          |    ✓   |
 |`address`    |your AC partner ip address                                                           |    ✓   |
+|`token`      |run `miio --discover` to get it                                                      |    ✓   |
 |`sensorId`   |humidity-temperature sensor (bound to your AC partner) id. run `miio --control yourACPartnerIP --method get_device_prop --params '["lumi.0", "device_list"]'` to get it (without 'lumi.' prefix)            |        |
 |`enableLED`  |true or 'true' to enable LED control                                                 |        |
 |`ratedPower` |Watt, your AC Normal Rated Power, used for displaying power percent by battery level |        |
