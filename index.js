@@ -26,7 +26,7 @@ class MiHeaterCooler {
         this.syncInterval = config.syncInterval || 5000; // millisecond, sync interval
 
         /* used for auto mode */
-        this.targetTemperature;
+        this.targetTemperature = 26;
 
         /* characteristics */
         this.Active;
@@ -107,7 +107,8 @@ class MiHeaterCooler {
                 minValue: 17,
                 minStep: 1
             })
-            .on('set', this._setCoolingThresholdTemperature.bind(this));
+            .on('set', this._setCoolingThresholdTemperature.bind(this))
+            .updateValue(this.targetTemperature);
 
         this.HeatingThresholdTemperature = this.acService.addCharacteristic(Characteristic.HeatingThresholdTemperature)
             .setProps({
@@ -115,7 +116,8 @@ class MiHeaterCooler {
                 minValue: 17,
                 minStep: 1
             })
-            .on('set', this._setHeatingThresholdTemperature.bind(this));
+            .on('set', this._setHeatingThresholdTemperature.bind(this))
+            .updateValue(this.targetTemperature);
 
         this.SwingMode = this.acService.addCharacteristic(Characteristic.SwingMode)
             .on('set', this._setSwingMode.bind(this));
@@ -177,15 +179,22 @@ class MiHeaterCooler {
                     temperature = parseInt(state.substr(6, 2), 16);
                     led = state.substr(8, 1);
 
+                    this.targetTemperature = temperature;
+
                     switch (state.substr(3, 1)) {
                         case '2':
                             mode = Characteristic.TargetHeaterCoolerState.AUTO;
+                            // keep the same temporarily
+                            this.CoolingThresholdTemperature.updateValue(temperature);
+                            this.HeatingThresholdTemperature.updateValue(temperature);
                             break;
                         case '1':
                             mode = Characteristic.TargetHeaterCoolerState.COOL;
+                            this.CoolingThresholdTemperature.updateValue(temperature);
                             break;
                         case '0':
                             mode = Characteristic.TargetHeaterCoolerState.HEAT;
+                            this.HeatingThresholdTemperature.updateValue(temperature);
                             break;
                     }
 
@@ -193,11 +202,6 @@ class MiHeaterCooler {
                     this.TargetHeaterCoolerState.updateValue(mode);
                     this.RotationSpeed.updateValue(speed);
                     this.SwingMode.updateValue(swing);
-
-                    // keep the same temporarily
-                    this.targetTemperature = temperature;
-                    this.CoolingThresholdTemperature.updateValue(temperature);
-                    this.HeatingThresholdTemperature.updateValue(temperature);
 
                     if (power > this.idlePower) {
                         this.CurrentHeaterCoolerState.updateValue(this.TargetHeaterCoolerState.value + 1);
