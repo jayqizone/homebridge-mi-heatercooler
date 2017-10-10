@@ -127,7 +127,8 @@ class MiHeaterCooler {
                 maxValue: 4,
                 minValue: 0,
                 minStep: 1
-            });
+            })
+            .on('set', this._setRotationSpeed.bind(this));
 
         this.CurrentHeaterCoolerState = this.acService.getCharacteristic(Characteristic.CurrentHeaterCoolerState);
 
@@ -371,6 +372,12 @@ class MiHeaterCooler {
     }
 
     _setSwingMode(SwingMode, callback) {
+        callback();
+
+        this.sendCmdAsync();
+    }
+
+    _setRotationSpeed(RotationSpeed, callback) {
         callback();
 
         this.sendCmdAsync();
