@@ -1,6 +1,6 @@
 {
   "name": "homebridge-mi-heatercooler",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "HeaterCooler for Mi AC Partner",
   "main": "index.js",
   "repository": {
@@ -17,8 +17,10 @@
   },
   "engines": {
     "node": ">=4.0.0",
-    "homebridge": ">=0.4.22",
-    "miio": ">= 0.12.0"
+    "homebridge": ">=0.4.22"
+  },
+  "dependencies": {
+    "miio": "~0.14"
   },
   "homepage": "https://github.com/jayqizone/homebridge-mi-heatercooler#readme"
 }

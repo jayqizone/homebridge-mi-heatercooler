@@ -44,7 +44,7 @@ Mi / Aqara AC partner plugin for [Homebridge](https://github.com/nfarina/homebr
 ## Installation
 
 ```
-npm i -g miio homebridge homebridge-mi-heatercooler
+npm i -g miio@0.14.1 homebridge homebridge-mi-heatercooler
 ```
 
 ## Configuration
