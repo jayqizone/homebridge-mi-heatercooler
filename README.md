@@ -57,9 +57,9 @@ npm i -g miio@0.14.1 homebridge homebridge-mi-heatercooler
     "address": "192.168.1.154",
     "token": "71b4e85d8527aab32c8f9175124c0d59",
     "sensorId": "158d0001a4c582",
-    "enableLED": true,
-    "ratedPower": 735
-  }
+    "enableLED": true,
+    "ratedPower": 735
+  }
 ]
 ```
 
@@ -86,7 +86,7 @@ Otherwise, you should use an Android simulator (like [BlueStacks](http://www.blu
     "tpl": "0180333331${p}${m}${w}${s}${th}${l}2",
     "brand": "haier",
     "set": "1"
-  }
+  }
 }
 ```
 
