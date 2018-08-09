@@ -43,13 +43,13 @@ Mi / Aqara AC partner plugin for [Homebridge](https://github.com/nfarina/homebr
 
 ## Installation
 
-```
+```bash
 npm i -g miio@0.14.1 homebridge homebridge-mi-heatercooler
 ```
 
 ## Configuration
 
-```
+```json
 "accessories": [
   {
     "accessory": "MiHeaterCooler",
@@ -81,7 +81,7 @@ Auto supports most of brands set 1 solution
 
 Otherwise, you should use an Android simulator (like [BlueStacks](http://www.bluestacks.com)) and [Wireshark](https://www.wireshark.org) to collect and analyze your AC partner command codes by `miio --token yourACPartnerToken --json-dump packetFile`, then modify `template.json` in plugin directory
 
-```
+```json
 {
   "010500378033333102": {
     "tpl": "0180333331${p}${m}${w}${s}${th}${l}2",
@@ -112,6 +112,6 @@ The key is your current AC partner solution model, you can get it by `miio --con
  * @param s number swing, 0 : enabled, 1 : disabled
  * @param td number temperature, decimal
  * @param th string temperature, hexadecimal
- * @param l string led, '0' : off, 'a' : on
+ * @param l string led, '0' : on, 'a' : off
  */
 ```

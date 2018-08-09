@@ -211,7 +211,7 @@ class MiHeaterCooler {
                     }
 
                     if (this.enableLED) {
-                        this.LED.updateValue(led.toLowerCase() === 'a');
+                        this.LED.updateValue(led === '0');
                     }
 
                     if (!this.sensorId) {
@@ -258,7 +258,7 @@ class MiHeaterCooler {
             active = this.Active.value;
             speed = this.RotationSpeed.value - 1;
             swing = 1 - this.SwingMode.value;
-            led = this.enableLED ? (this.LED.value ? 'a' : '0') : '1';
+            led = this.enableLED ? (this.LED.value ? '0' : 'a') : '1';
 
             switch (this.TargetHeaterCoolerState.value) {
                 case Characteristic.TargetHeaterCoolerState.AUTO:
@@ -299,7 +299,7 @@ class MiHeaterCooler {
      * @param s number swing, 0 : enabled, 1 : disabled
      * @param td number temperature, decimal
      * @param th string temperature, hexadecimal
-     * @param l string led, '0' : off, 'a' : on
+     * @param l string led, '0' : on, 'a' : off
      */
     _genCmd(p, m, w, s, td, th, l) {
         let cmd;
