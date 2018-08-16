@@ -2,6 +2,8 @@
 
 [![npm version](https://badge.fury.io/js/homebridge-mi-heatercooler.svg)](https://badge.fury.io/js/homebridge-mi-heatercooler)
 
+English | [中文](https://github.com/jayqizone/homebridge-mi-heatercooler/blob/master/README-CN.md)
+
 Mi / Aqara AC partner plugin for [Homebridge](https://github.com/nfarina/homebridge)
 
 ## Feature
@@ -21,7 +23,8 @@ Mi / Aqara AC partner plugin for [Homebridge](https://github.com/nfarina/homebr
   - 4 : auto
 - Oscillate
 - LED
-  - if set enableLED in config
+  - only if set `enableLED` in config
+  - would add a bulb accessory in Home app
 
 ![](https://raw.githubusercontent.com/jayqizone/homebridge-mi-heatercooler/master/images/control.PNG)
 
@@ -33,10 +36,10 @@ Mi / Aqara AC partner plugin for [Homebridge](https://github.com/nfarina/homebr
   - heating : orange
   - cooling : blue
 - Current power percent
-  - if set ratedPower in config
+  - only if set `ratedPower` in config
   - display as Battery Level
 - Current temperature & humidity
-  - if set sensorId in config
+  - only if set `sensorId` in config
   - would add a humidity sensor in Home app
 
 ![](https://raw.githubusercontent.com/jayqizone/homebridge-mi-heatercooler/master/images/state.PNG)
@@ -48,6 +51,10 @@ npm i -g miio@0.14.1 homebridge homebridge-mi-heatercooler
 ```
 
 ## Configuration
+
+First, you should enable ac partner's developer mode in MiHome app
+
+Then, add this to config.json in Homebridge directory:
 
 ```json
 "accessories": [
@@ -63,16 +70,16 @@ npm i -g miio@0.14.1 homebridge homebridge-mi-heatercooler
 ]
 ```
 
-|  Parameter  |                                     Description                                     |Required|
-|-------------|-------------------------------------------------------------------------------------|:------:|
-|`accessory`  |"MiHeaterCooler"                                                                     |    ✓   |
-|`name`       |unique name                                                                          |    ✓   |
-|`address`    |your AC partner ip address                                                           |    ✓   |
-|`token`      |run `miio --discover` to get it                                                      |    ✓   |
-|`sensorId`   |humidity-temperature sensor (bound to your AC partner) id. run `miio --control yourACPartnerIP --method get_device_prop --params '["lumi.0", "device_list"]'` to get it (without 'lumi.' prefix)            |        |
-|`enableLED`  |true or 'true' to enable LED control                                                 |        |
-|`ratedPower` |Watt, your AC Normal Rated Power, used for displaying power percent by battery level |        |
-|`idlePower`  |Watt, determine whether current working state is idle, default value is 100          |        |
+| Parameter | Description | Required |
+|-|-|:-:|
+| `accessory`  | "MiHeaterCooler"                                                                     | ✓ |
+| `name`       | unique name                                                                          | ✓ |
+| `address`    | your AC partner ip address                                                           | ✓ |
+| `token`      | run `miio --discover` to get it                                                      | ✓ |
+| `sensorId`   | humidity-temperature sensor (bound to your AC partner) id. run `miio --control yourACPartnerIP --method get_device_prop --params '["lumi.0", "device_list"]'` to get it (without 'lumi.' prefix) ||
+| `enableLED`  | true or 'true' to enable LED control                                                 ||
+| `ratedPower` | Watt, your AC Normal Rated Power, used for displaying power percent by battery level ||
+| `idlePower`  | Watt, determine whether current working state is idle, default value is 100          ||
 
 ## Extra
 
@@ -92,7 +99,7 @@ Otherwise, you should use an Android simulator (like [BlueStacks](http://www.blu
 
 The key is your current AC partner solution model, you can get it by `miio --control yourACPartnerIP --method get_model_and_state`
 
-"tpl" is this model's command template, you can use ES 6 Template Literals with these params:
+"tpl" is this model's command template, you can use ES6 Template Literals with these params:
 
 ```js
 /**
@@ -101,15 +108,15 @@ The key is your current AC partner solution model, you can get it by `miio --con
  * if your ac partner sends commands like 01xxxxxxxxpmwstlx (most of brands set 1 do)
  * then you don't need template config
  *
- * template uses ES 6 Template Literals to generate commands
+ * template uses ES6 Template Literals to generate commands
  * supports +, -, *, /, %, ?:, [], toString(16) and so on
  *
- * @param p number power, 0 : off, 1 : on
- * @param m number mode, 0 : heat, 1 : cool, 2 : auto
- * @param w number wind speed, 0 : low, 1 : medium, 2 : high, 3 : auto
- * @param s number swing, 0 : enabled, 1 : disabled
- * @param td number temperature, decimal
- * @param th string temperature, hexadecimal
- * @param l string led, '0' : on, 'a' : off
+ * @param p  number power       0 : off, 1 : on
+ * @param m  number mode        0 : heat, 1 : cool, 2 : auto
+ * @param w  number wind speed  0 : low, 1 : medium, 2 : high, 3 : auto
+ * @param s  number swing       0 : enabled, 1 : disabled
+ * @param td number temperature decimal
+ * @param th string temperature hexadecimal
+ * @param l  string led         '0' : on, 'a' : off
  */
 ```

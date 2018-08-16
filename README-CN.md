@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/homebridge-mi-heatercooler.svg)](https://badge.fury.io/js/homebridge-mi-heatercooler)
 
-适用于 Mi / Aqara 空调伴侣的 [Homebridge](https://github.com/nfarina/homebridge) 插件
+适用于 米家 / Aqara 空调伴侣的 [Homebridge](https://github.com/nfarina/homebridge) 插件
 
 ## 功能
 
@@ -21,7 +21,7 @@
   - 4 : 自动
 - 摆动
 - 灯光
-  - 仅当 enableLED 为 true 时
+  - 仅当 `enableLED` 为 true 时
   - 作为单独的灯光配件
 
 ![](https://raw.githubusercontent.com/jayqizone/homebridge-mi-heatercooler/master/images/control.PNG)
@@ -34,10 +34,10 @@
   - 制热 : 橙
   - 制冷 : 蓝
 - 当前功率（百分比）
-  - 仅当设定了 ratedPower（额定功率）时
+  - 仅当设定了 `ratedPower`（额定功率）时
   - 作为「电池电量」显示
 - 当前温、湿度
-  - 仅当指定了温湿度传感器的 sensorId 时
+  - 仅当指定了温湿度传感器的 `sensorId` 时
   - 湿度作为单独的传感器
 
 ![](https://raw.githubusercontent.com/jayqizone/homebridge-mi-heatercooler/master/images/state.PNG)
