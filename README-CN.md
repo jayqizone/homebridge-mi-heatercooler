@@ -50,7 +50,7 @@ npm i -g miio@0.14.1 homebridge homebridge-mi-heatercooler
 
 ## 配置
 
-首先需要在「米家 app」中打开空调伴侣的开发者模式
+首先需要在「米家 app」中打开空调伴侣的开发者模式
 
 然后在 Homebridge 的 config.json 中加入如下配置：
 
