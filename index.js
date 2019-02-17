@@ -104,7 +104,7 @@ class MiHeaterCooler {
         this.CoolingThresholdTemperature = this.acService.addCharacteristic(Characteristic.CoolingThresholdTemperature)
             .setProps({
                 maxValue: 30,
-                minValue: 17,
+                minValue: 18,
                 minStep: 1
             })
             .on('set', this._setCoolingThresholdTemperature.bind(this))
@@ -113,7 +113,7 @@ class MiHeaterCooler {
         this.HeatingThresholdTemperature = this.acService.addCharacteristic(Characteristic.HeatingThresholdTemperature)
             .setProps({
                 maxValue: 30,
-                minValue: 17,
+                minValue: 18,
                 minStep: 1
             })
             .on('set', this._setHeatingThresholdTemperature.bind(this))
@@ -301,6 +301,16 @@ class MiHeaterCooler {
      * @param th string temperature, hexadecimal
      * @param l string led, '0' : on, 'a' : off
      */
+
+    _toHex(b) {
+        b = b - 0;
+        let res = b.toString(16).toUpperCase();
+        if (res.length == 1) {
+            res = "0" + res;
+        }
+        return res;
+    }
+
     _genCmd(p, m, w, s, td, th, l) {
         let cmd;
 
@@ -317,6 +327,75 @@ class MiHeaterCooler {
                 + l
                 + this.model.substr(-1);
         }
+
+        // Shinco
+        if (this.model == "010515770001109201") {
+            if (p == 0) {
+                cmd = "010001109200311801005502000600801000ED";
+            } else {
+                let counter = 0x55;
+                cmd += "0055";
+
+                let t = td - 0;
+                let tt = t + 0x70;
+                cmd += this._toHex(tt);
+                counter += tt;
+
+                cmd += "00";
+                
+                let secret_map = {
+                    0x1e: 0x1b,
+                    0x1d: 0x1a,
+                    0x1c: 0x18,
+                    0x1b: 0x16,
+                    0x1a: 0x14,
+                    0x19: 0x13,
+                    0x18: 0x11,
+                    0x17: 0x10,
+                    0x16: 0x0e,
+                    0x15: 0x0c,
+                    0x14: 0x0a,
+                    0x13: 0x08,
+                    0x12: 0x06
+                };
+                let secret = secret_map[t];
+                cmd += this._toHex(secret);
+                counter += secret;
+
+                cmd += "00";
+
+                let s_secret;
+                if (s == 0) {
+                    s_secret = 0x80;
+                } else {
+                    s_secret = 0x00;
+                }
+                cmd += this._toHex(s_secret);
+                counter += s_secret;
+
+                let m_secret_map = {
+                    0: 0x40,
+                    1: 0x10,
+                    2: 0x0
+                };
+                let w_secret_map = {
+                    0: 0x1,
+                    1: 0x2,
+                    2: 0x3,
+                    3: 0x0
+                };
+                let m_secret = m_secret_map[m - 0];
+                let w_secret = w_secret_map[w - 0];
+                let mw_secret = m_secret + w_secret;
+                cmd += this._toHex(mw_secret);
+                counter += mw_secret;
+
+                cmd += "00";
+                cmd += this._toHex(counter & 0xFF);
+            }
+        }
+
+        console.log("[debug] model: " + this.model + " => cmd: " + cmd);
 
         return cmd;
     }
