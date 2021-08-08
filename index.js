@@ -75,11 +75,6 @@ class MiHeaterCooler {
             this.services.push(this.ledService);
         }
 
-        if (this.sensorId) {
-            this.humidityService = new Service.HumiditySensor(this.name);
-            this.services.push(this.humidityService);
-        }
-
         if (this.ratedPower) {
             this.powerService = new Service.BatteryService(this.name);
             this.services.push(this.powerService);
@@ -140,8 +135,13 @@ class MiHeaterCooler {
         }
 
         if (this.sensorId) {
-            this.CurrentRelativeHumidity = this.humidityService.getCharacteristic(Characteristic.CurrentRelativeHumidity);
-        }
+            this.CurrentRelativeHumidity = this.acService.addCharacteristic(Characteristic.CurrentRelativeHumidity)
+                .setProps({                                                                                    
+                maxValue: 100,                                                                                     
+                minValue: 0,                                                                                       
+                minStep: 1                                                                                             
+            })                                                                                                         
+        }      
 
         if (this.ratedPower) {
             this.ChargingState = this.powerService.getCharacteristic(Characteristic.ChargingState);
