@@ -1,11 +1,11 @@
 {
-  "name": "homebridge-mi-heatercooler",
+  "name": "homebridge-aqara-heatercooler",
   "version": "0.0.8",
   "description": "HeaterCooler for Mi AC Partner",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jayqizone/homebridge-mi-heatercooler.git"
+    "url": "git+https://github.com/seanzhang98/homebridge-mi-heatercooler.git"
   },
   "keywords": [
     "homebridge-plugin"
@@ -13,7 +13,7 @@
   "author": "JayQi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jayqizone/homebridge-mi-heatercooler/issues"
+    "url": "https://github.com/seanzhang98/homebridge-mi-heatercooler"
   },
   "engines": {
     "node": ">=4.0.0",
@@ -22,5 +22,5 @@
   "dependencies": {
     "miio": "~0.14"
   },
-  "homepage": "https://github.com/jayqizone/homebridge-mi-heatercooler#readme"
+  "homepage": "https://github.com/seanzhang98/homebridge-mi-heatercooler#readme"
 }
