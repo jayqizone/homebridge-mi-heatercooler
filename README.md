@@ -65,7 +65,7 @@ npm i -g miio@0.14.1 homebridge homebridge-aqara-heatercooler
 ]
 ```
 
-| 参数 | 描述 | Required |
+| 参数 | 描述 | 必须配置 |
 |-|-|:-:|
 | `accessory`  | "MiHeaterCooler"                              | ✓ |
 | `name`       | 名称唯一                                       | ✓ |

@@ -9,20 +9,25 @@
       "name": {
         "title": "Device name",
         "type": "string",
+        "description": "Name you want to show in Home app",
         "required": true
       },
       "address": {
         "title": "IP address",
         "type": "string",
+        "default": "192.168.X.X"
+        "description": "IP address of your AC Partner.",
         "required": true
       },
         "token": {
-        "title": "token",
+        "title": "Token",
+        "description": "AC Partner's token.",
         "type": "string",
         "required": true
       },
         "showSID": {
-        "title": "Use humidity-temperature sensor",
+        "title": "Use EXTERNAL humidity-temperature sensor",
+        "description": "Show room temperature and humidity with a bound zigbee sensor.",
         "type": "boolean"
       },
         "sensorId": {
@@ -38,10 +43,18 @@
         "type": "boolean"
       },
         "ratedPower": {
-        "title": "Rated Power",
+        "title": "Rated Power (Watt)",
         "type": "integer",
         "required": false
-      }
+      },
+    },
+      "idlePower": {
+      "title": "idle Power (Watt)",
+      "type": "integer",
+      "description": "AC power lower this value will show in idle state (green icon).",
+      "default":100,
+      "required": true
+    }
     }
   }
 }
