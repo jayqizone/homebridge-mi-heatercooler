@@ -4,6 +4,8 @@
 
 适用于 米家 / Aqara 空调伴侣的 [Homebridge](https://github.com/nfarina/homebridge) 插件
 
+支援 homebridge-config-ui-x 进行配置
+
 ## 功能
 
 ### 控制
