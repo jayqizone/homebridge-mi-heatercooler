@@ -94,6 +94,11 @@ class MiHeaterCooler {
             .on('set', this._setActive.bind(this));
 
         this.TargetHeaterCoolerState = this.acService.getCharacteristic(Characteristic.TargetHeaterCoolerState)
+            .setProps({                                                    
+                validValues: [2],                                     
+                current: [0,2],                                     
+                target:[2]                                                   
+                })                                                        
             .on('set', this._setTargetHeaterCoolerState.bind(this));
 
         this.CoolingThresholdTemperature = this.acService.addCharacteristic(Characteristic.CoolingThresholdTemperature)
