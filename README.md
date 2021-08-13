@@ -1,4 +1,9 @@
-# homebridge-aqara-heatercooler
+<p align="center">
+  <a href="https://github.com/homebridge/homebridge"><img src="https://raw.githubusercontent.com/homebridge/branding/master/logos/homebridge-color-round-stylized.png" height="140"></a>
+</p>
+
+<h1 align="center">
+homebridge-aqara-heatercooler</h1>
 
 [![npm version](https://badge.fury.io/js/homebridge-aqara-heatercooler.svg)](https://badge.fury.io/js/homebridge-aqara-heatercooler)
 
