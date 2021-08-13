@@ -15,7 +15,7 @@
       "address": {
         "title": "IP address",
         "type": "string",
-        "default": "192.168.X.X"
+        "default": "192.168.X.X",
         "description": "IP address of your AC Partner.",
         "required": true
       },
@@ -47,14 +47,13 @@
         "type": "integer",
         "required": false
       },
-    },
       "idlePower": {
       "title": "idle Power (Watt)",
       "type": "integer",
       "description": "AC power lower this value will show in idle state (green icon).",
       "default":100,
       "required": true
-    }
+      }
     }
   }
 }
