@@ -13,7 +13,8 @@
       "token": "71b4e85d8527aab32c8f9175124c0d59",
       "sensorId": "158d0001a4c582",
       "enableLED": true,
-      "ratedPower": 735
+      "ratedPower": 735,
+      "idlePower": 100
     }
   ]
 }
