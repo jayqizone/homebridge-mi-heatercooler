@@ -26,7 +26,7 @@ homebridge-aqara-heatercooler</h1>
   - 仅当 `enableLED` 为 true 时
   - 作为单独的灯光配件
 
-![](https://raw.githubusercontent.com/seanzhang98/homebridge-Aqara-heatercooler/master/images/tmp.PNG)
+<img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Aqara-heatercooler/master/images/tmp.PNG" width = "500" align=center />
 
 
 ### 显示
@@ -42,7 +42,7 @@ homebridge-aqara-heatercooler</h1>
   - 仅当指定了温湿度传感器的 `sensorId` 时
   - 湿度集成在空调内，不以单独传感器显示
 
-![](https://raw.githubusercontent.com/seanzhang98/homebridge-Aqara-heatercooler/master/images/con.PNG)
+<img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Aqara-heatercooler/master/images/con.PNG" width = "500" align=center />
 
 ## 安装
 
@@ -52,9 +52,13 @@ npm i -g miio@0.14.1 homebridge homebridge-aqara-heatercooler
 
 ## 配置
 
-需要获取空调伴侣的token
+首先需要获取空调伴侣的token 以及 IP 地址
 
-然后在 Homebridge 的 config.json 中加入如下配置：
+然后使用 Config UI 进行配置
+
+<img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Aqara-heatercooler/master/images/Config.png" width = "1500" align=center />
+
+或者在 Homebridge 的 config.json 中加入如下配置：
 
 ```json
 "accessories": [
@@ -80,6 +84,7 @@ npm i -g miio@0.14.1 homebridge homebridge-aqara-heatercooler
 | `enableLED`  | true 或 'true'                                ||
 | `ratedPower` | 瓦，空调额定功率，用于以「电池电量」显示当前功率百分比 ||
 | `idlePower`  | 瓦，用于判定当前是否处于空闲状态，默认值为 100       ||
+
 
 ## 其它
 
