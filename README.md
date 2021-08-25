@@ -66,6 +66,8 @@ npm i -g miio@0.14.1 homebridge homebridge-aqara-heatercooler
     "accessory": "MiHeaterCooler",
     "name": "AC Partner",
     "address": "192.168.1.154",
+    "Manufacturer": "Aqara",
+    "Model": "KTBL11LM",
     "token": "71b4e85d8527aab32c8f9175124c0d59",
     "sensorId": "158d0001a4c582",
     "enableLED": false,
@@ -79,7 +81,9 @@ npm i -g miio@0.14.1 homebridge homebridge-aqara-heatercooler
 | `accessory`  | "MiHeaterCooler"                              | ✓ |
 | `name`       | 名称唯一                                       | ✓ |
 | `address`    | 空调伴侣的 ip 地址                              | ✓ |
-| `token`      | 执行 `miio --discover` 命令获取                 | ✓ |
+| `token`      | 执行 `miio --discover` 命令获取, 或者使用[Get_MiHome_devices_token](https://github.com/Maxmudjon/Get_MiHome_devices_token)                | ✓ |
+| `Manufacturer`  | 用于显示设备生产商信息，默认为Aqara       | ✓ |
+| `Model`  | 用于显示设备型号信息，默认为二代空调伴侣       | ✓ |
 | `sensorId`   | 温湿度传感器 (必须绑定到此空调伴侣) id。执行 `miio --control 空调伴侣ip --method get_device_prop --params '["lumi.0", "device_list"]'` 命令获取（去除 'lumi.' 前缀）||
 | `enableLED`  | true 或 'true'                                ||
 | `ratedPower` | 瓦，空调额定功率，用于以「电池电量」显示当前功率百分比 ||
