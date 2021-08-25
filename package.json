@@ -1,6 +1,6 @@
 {
-  "name": "homebridge-aqara-heatercooler",
-  "version": "1.1.5",
+  "name": "homebridge-xiaomi-aqara-heatercooler",
+  "version": "1.2.0",
   "description": "A homebridge plugin for Mi/Aqara AC Partner",
   "main": "index.js",
   "repository": {

@@ -25,6 +25,18 @@
         "type": "string",
         "required": true
       },
+        "Manufacturer": {
+        "title": "Manufacturer",
+        "description": "AC Partner's Manufacturer.",
+        "type": "string",
+        "required": true
+      },
+        "Model": {
+        "title": "Model",
+        "description": "AC Partner's Model.",
+        "type": "string",
+        "required": true
+      },
         "showSID": {
         "title": "Use EXTERNAL humidity-temperature sensor",
         "description": "Show room temperature and humidity with a bound zigbee sensor.",

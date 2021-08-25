@@ -18,6 +18,8 @@ class MiHeaterCooler {
         this.name = config.name || 'AC Partner';
         this.token = config.token;
         this.address = config.address;
+        this.Manufacturer = config.Manufacturer;
+        this.Model = config.Model;
         this.enableLED = config.enableLED + '' === 'true'; // enable led control
         this.sensorId = config.sensorId; // humidity-temperature-pressure sensor id
         this.ratedPower = config.ratedPower; // Watt, used for fake BatteryService
@@ -83,8 +85,8 @@ class MiHeaterCooler {
         this.serviceInfo = new Service.AccessoryInformation();
 
         this.serviceInfo
-            .setCharacteristic(Characteristic.Manufacturer, 'Mi')
-            .setCharacteristic(Characteristic.Model, 'Heater Cooler')
+            .setCharacteristic(Characteristic.Manufacturer, this.Manufacturer)
+            .setCharacteristic(Characteristic.Model, this.Model)
             .setCharacteristic(Characteristic.SerialNumber, this.address);
         this.services.push(this.serviceInfo);
     }
