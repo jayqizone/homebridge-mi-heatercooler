@@ -29,12 +29,22 @@
         "title": "Manufacturer",
         "description": "AC Partner's Manufacturer.",
         "type": "string",
+        "default": "Aqara",
+        "oneOf": [
+          { "title": "Aqara", "enum": ["Aqara"] },
+          { "title": "XiaoMi", "enum": ["Lumi United Technology Co., Ltd."] }
+        ],
         "required": true
       },
         "Model": {
         "title": "Model",
         "description": "AC Partner's Model.",
         "type": "string",
+        "default": "KTBL11LM",
+        "oneOf": [
+          { "title": "Aqara AC Partner V3", "enum": ["KTBL11LM"] },
+          { "title": "XiaoMi AC Partner V2", "enum": ["KTBL02LM"] }
+        ],
         "required": true
       },
         "showSID": {
