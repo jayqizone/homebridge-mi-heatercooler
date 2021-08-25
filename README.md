@@ -1,9 +1,9 @@
 <p align="center">
-  <a href="https://github.com/homebridge/homebridge"><img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Aqara-heatercooler/master/images/logo.png" height="140"></a>
+  <a href="https://github.com/homebridge/homebridge"><img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Aqara-heatercooler/master/images/logo.png" height="240"></a>
 </p>
 
 <h1 align="center">
-homebridge-aqara-heatercooler</h1>
+Homebridge Xiaomi Aqara Heatercooler</h1>
 
 [![npm version](https://badge.fury.io/js/homebridge-aqara-heatercooler.svg)](https://badge.fury.io/js/homebridge-aqara-heatercooler)
 
@@ -14,6 +14,7 @@ homebridge-aqara-heatercooler</h1>
 ## 功能
 
 ### 控制
+- 仅保留制冷模式
 - 温度
   - 17 - 30 度
 - 风速
@@ -47,7 +48,7 @@ homebridge-aqara-heatercooler</h1>
 ## 安装
 
 ```bash
-npm i -g miio@0.14.1 homebridge homebridge-aqara-heatercooler
+npm i -g miio@0.14.1 homebridge homebridge-xiaomi-aqara-heatercooler
 ```
 
 ## 配置
