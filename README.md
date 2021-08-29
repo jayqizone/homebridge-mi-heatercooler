@@ -1,11 +1,11 @@
 <p align="center">
-  <a href="https://github.com/homebridge/homebridge"><img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Aqara-heatercooler/master/images/logo.png" height="240"></a>
+  <a href="https://github.com/homebridge/homebridge"><img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Xiaomi-Aqara-AC-Cooler/master/images/logo.png" height="240"></a>
 </p>
 
 <h1 align="center">
-Homebridge Xiaomi Aqara Heatercooler</h1>
+Homebridge Xiaomi Aqara AC Cooler</h1>
 
-[![npm version](https://badge.fury.io/js/homebridge-aqara-heatercooler.svg)](https://badge.fury.io/js/homebridge-aqara-heatercooler)
+[![npm version](https://badge.fury.io/js/homebridge-Xiaomi-Aqara-AC-Cooler.svg)](https://badge.fury.io/js/homebridge-aqara-heatercooler)
 
 适用于 米家 / Aqara 空调伴侣的 [Homebridge](https://github.com/nfarina/homebridge) 插件
 
@@ -27,7 +27,7 @@ Homebridge Xiaomi Aqara Heatercooler</h1>
   - 仅当 `enableLED` 为 true 时
   - 作为单独的灯光配件
 
-<img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Aqara-heatercooler/master/images/tmp.PNG" width = "500" align=center />
+<img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Xiaomi-Aqara-AC-Cooler/master/images/tmp.PNG" width = "500" align=center />
 
 
 ### 显示
@@ -43,7 +43,7 @@ Homebridge Xiaomi Aqara Heatercooler</h1>
   - 仅当指定了温湿度传感器的 `sensorId` 时
   - 湿度集成在空调内，不以单独传感器显示
 
-<img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Aqara-heatercooler/master/images/con.PNG" width = "500" align=center />
+<img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Xiaomi-Aqara-AC-Cooler/master/images/con.PNG" width = "500" align=center />
 
 ## 安装
 
@@ -57,7 +57,7 @@ npm i -g miio@0.14.1 homebridge homebridge-xiaomi-aqara-heatercooler
 
 然后使用 Config UI 进行配置
 
-<img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Aqara-heatercooler/master/images/Config.png" width = "1500" align=center />
+<img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Xiaomi-Aqara-AC-Cooler/master/images/Config.png" width = "1500" align=center />
 
 或者在 Homebridge 的 config.json 中加入如下配置：
 

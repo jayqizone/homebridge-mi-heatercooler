@@ -1,11 +1,11 @@
 {
-  "name": "homebridge-xiaomi-aqara-heatercooler",
-  "version": "1.2.1",
-  "description": "A homebridge plugin for Mi/Aqara AC Partner",
+  "name": "homebridge-xiaomi-aqara-ac-cooler",
+  "version": "1.0.0",
+  "description": "A homebridge plugin for Mi/Aqara AC Partner with Cool mode only",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/seanzhang98/homebridge-Aqara-heatercooler.git"
+    "url": "git+https://github.com/seanzhang98/homebridge-Xiaomi-Aqara-AC-Cooler.git"
   },
   "keywords": [
     "homebridge-plugin",
@@ -16,7 +16,7 @@
   "author": "Seanzhang",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/seanzhang98/homebridge-Aqara-heatercooler/issues"
+    "url": "https://github.com/seanzhang98/homebridge-Xiaomi-Aqara-AC-Cooler/issues"
   },
   "engines": {
       "node": ">=4.0.0",
@@ -25,5 +25,5 @@
     "dependencies": {
       "miio": "~0.14"
     },
-  "homepage": "https://github.com/seanzhang98/homebridge-Aqara-heatercooler#readme"
+  "homepage": "https://github.com/seanzhang98/homebridge-Xiaomi-Aqara-AC-Cooler#readme"
 }

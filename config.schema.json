@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "MiHeaterCooler",
+  "pluginAlias": "MiAqaraACCooler",
   "pluginType": "accessory",
   "headerDisplay": "A homebridge plugin for Mi/Aqara AC Partner",
   "footerDisplay": "This project is based on jayqizone/homebridge-mi-heatercooler.",

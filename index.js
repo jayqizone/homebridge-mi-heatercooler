@@ -7,10 +7,10 @@ module.exports = function (homebridge) {
     Service = homebridge.hap.Service;
     Characteristic = homebridge.hap.Characteristic;
 
-    homebridge.registerAccessory('homebridge-Aqara-heatercooler', 'MiHeaterCooler', MiHeaterCooler);
+    homebridge.registerAccessory('homebridge-Xiaomi-Aqara-AC-Cooler', 'MiAqaraACCooler', MiAqaraACCooler);
 }
 
-class MiHeaterCooler {
+class MiAqaraACCooler {
     constructor(log, config) {
         this.log = log;
 
