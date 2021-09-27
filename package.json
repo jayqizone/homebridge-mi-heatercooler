@@ -1,6 +1,6 @@
 {
   "name": "homebridge-xiaomi-aqara-ac-cooler",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "A homebridge plugin for Mi/Aqara AC Partner with Cool mode only",
   "main": "index.js",
   "repository": {
