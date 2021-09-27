@@ -5,7 +5,7 @@
 <h1 align="center">
 Homebridge Xiaomi Aqara AC Cooler</h1>
 
-[![npm version](https://badge.fury.io/js/homebridge-Xiaomi-Aqara-AC-Cooler.svg)](https://badge.fury.io/js/homebridge-aqara-heatercooler)
+[![npm version](https://badge.fury.io/js/homebridge-Xiaomi-Aqara-AC-Cooler.svg)](https://badge.fury.io/js/homebridge-xiaomi-aqara-ac-cooler)
 
 适用于 米家 / Aqara 空调伴侣的 [Homebridge](https://github.com/nfarina/homebridge) 插件
 
