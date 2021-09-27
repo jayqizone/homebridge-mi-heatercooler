@@ -48,7 +48,7 @@ Homebridge Xiaomi Aqara AC Cooler</h1>
 ## 安装
 
 ```bash
-npm i -g miio@0.14.1 homebridge homebridge-xiaomi-aqara-heatercooler
+npm i -g miio@0.14.1 homebridge-xiaomi-aqara-ac-cooler
 ```
 
 ## 配置
