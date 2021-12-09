@@ -5,7 +5,15 @@
 <h1 align="center">
 Homebridge Xiaomi Aqara AC Cooler</h1>
 
+<p align="center">
+    <a href="README.md"><font size=4><b>简体中文</b></font></a>
+    <font size=4><b>·</b></font>
+    <a href="README_EN.md"><font size=4><b>English</b></font></a>
+</p>
+
 <p align="center"> <a href=""><img src="https://img.shields.io/npm/dy/homebridge-xiaomi-aqara-ac-cooler"></a> <a href=""><img src="https://img.shields.io/github/package-json/v/seanzhang98/homebridge-xiaomi-aqara-ac-cooler"></a> <a href=""><img src="https://img.shields.io/github/languages/top/seanzhang98/homebridge-Xiaomi-Aqara-AC-Cooler"></a></p>
+
+
 
 适用于 米家 / Aqara 空调伴侣的 [Homebridge](https://github.com/nfarina/homebridge) 插件
 
