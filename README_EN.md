@@ -22,14 +22,14 @@ With homebridge-config-ui-x support
 ### Control
 - Only keeps the Cool mode
 - Temperature
-  - 17 - 30 degress
-- Wind Speed
+  - 17 - 30 Celsius
+- Fan speed
   - 1 : Low
   - 2 : medium
   - 3 : high
   - 4 : auto
-- swing
-- light
+- Oscillate
+- LED
   - only when `enableLED` set to true
   - as a light accessory
 
@@ -38,15 +38,16 @@ With homebridge-config-ui-x support
 
 ### Display
 
-- Sync AC partner's status
-- Idel / working
-  - idel : green
+- Sync state with AC partner
+- Idle / Working color
+  - idle : green
+  - heating : orange
   - cooling : blue
-- ratedPower（in percentage）
-  - when `ratedPower` setup
-  - show as「battery」
-- Current temp/humid
-  - when `sensorId` was setup
+- Current power percent
+  - only if set `ratedPower` in config
+  - display as Battery Level
+- Current temperature & humidity
+  -  only if set `sensorId` in config
 
 <img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Xiaomi-Aqara-AC-Cooler/master/images/con.PNG" width = "500" align=center />
 
