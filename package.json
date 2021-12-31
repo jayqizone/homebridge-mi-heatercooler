@@ -19,7 +19,7 @@
     "url": "https://github.com/seanzhang98/homebridge-Xiaomi-Aqara-AC-Cooler/issues"
   },
   "engines": {
-      "node": ">=4.0.0",
+      "node": ">=14.0.0",
       "homebridge": ">=0.4.22"
     },
     "dependencies": {
