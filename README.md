@@ -1,60 +1,72 @@
-# homebridge-mi-heatercooler
+<p align="center">
+  <a href="https://github.com/homebridge/homebridge"><img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Xiaomi-Aqara-AC-Cooler/master/images/logo.png" height="240"></a>
+</p>
 
-[![npm version](https://badge.fury.io/js/homebridge-mi-heatercooler.svg)](https://badge.fury.io/js/homebridge-mi-heatercooler)
+<h1 align="center">
+Homebridge Xiaomi Aqara AC Cooler</h1>
 
-English | [中文](https://github.com/jayqizone/homebridge-mi-heatercooler/blob/master/README-CN.md)
+<p align="center">
+    <a href="README.md"><font size=4><b>简体中文</b></font></a>
+    <font size=4><b>·</b></font>
+    <a href="README_EN.md"><font size=4><b>English</b></font></a>
+</p>
 
-Mi / Aqara AC partner plugin for [Homebridge](https://github.com/nfarina/homebridge)
+<p align="center"> <a href="https://github.com/homebridge/homebridge/wiki/Verified-Plugins"><img src="https://badgen.net/badge/homebridge/verified/purple"></a> <a href=""><img src="https://img.shields.io/npm/dy/homebridge-xiaomi-aqara-ac-cooler"></a> <a href=""><img src="https://img.shields.io/github/package-json/v/seanzhang98/homebridge-xiaomi-aqara-ac-cooler"></a> <a href=""><img src="https://img.shields.io/github/languages/top/seanzhang98/homebridge-Xiaomi-Aqara-AC-Cooler"></a></p>
 
-## Feature
 
-### Control
+适用于 米家 / Aqara 空调伴侣的 [Homebridge](https://github.com/nfarina/homebridge) 插件
 
-- Mode
-  - heat
-  - cool
-  - auto
-- Temperature
-  - 17 - 30 Celsius
-- Fan speed
-  - 1 : low
-  - 2 : medium
-  - 3 : high
-  - 4 : auto
-- Oscillate
-- LED
-  - only if set `enableLED` in config
-  - would add a bulb accessory in Home app
+支援 homebridge-config-ui-x 进行配置
 
-![](https://raw.githubusercontent.com/jayqizone/homebridge-mi-heatercooler/master/images/control.PNG)
+## 功能
 
-### Display
+### 控制
+- 仅保留制冷模式
+- 温度
+  - 17 - 30 度
+- 风速
+  - 1 : 低
+  - 2 : 中
+  - 3 : 高
+  - 4 : 自动
+- 摆动
+- 灯光
+  - 仅当 `enableLED` 为 true 时
+  - 作为单独的灯光配件
 
-- Sync state with AC partner
-- Idle / Working color
-  - idle : green
-  - heating : orange
-  - cooling : blue
-- Current power percent
-  - only if set `ratedPower` in config
-  - display as Battery Level
-- Current temperature & humidity
-  - only if set `sensorId` in config
-  - would add a humidity sensor in Home app
+<img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Xiaomi-Aqara-AC-Cooler/master/images/tmp.PNG" width = "500" align=center />
 
-![](https://raw.githubusercontent.com/jayqizone/homebridge-mi-heatercooler/master/images/state.PNG)
 
-## Installation
+### 显示
+
+- 空调伴侣状态同步
+- 空闲 / 工作 颜色区分
+  - 空闲 : 绿
+  - 制冷 : 蓝
+- 当前功率（百分比）
+  - 仅当设定了 `ratedPower`（额定功率）时
+  - 作为「电池电量」显示
+- 当前温、湿度
+  - 仅当指定了温湿度传感器的 `sensorId` 时
+  - 湿度集成在空调内，不以单独传感器显示
+
+<img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Xiaomi-Aqara-AC-Cooler/master/images/con.PNG" width = "500" align=center />
+
+## 安装
 
 ```bash
-npm i -g miio@0.14.1 homebridge homebridge-mi-heatercooler
+npm i -g miio@0.14.1 homebridge-xiaomi-aqara-ac-cooler
 ```
 
-## Configuration
+## 配置
 
-First, you should enable ac partner's developer mode in MiHome app
+首先需要获取空调伴侣的token 以及 IP 地址
 
-Then, add this to config.json in Homebridge directory:
+然后使用 Config UI 进行配置
+
+<img src="https://raw.githubusercontent.com/seanzhang98/homebridge-Xiaomi-Aqara-AC-Cooler/master/images/Config.png" width = "1500" align=center />
+
+或者在 Homebridge 的 config.json 中加入如下配置：
 
 ```json
 "accessories": [
@@ -62,30 +74,35 @@ Then, add this to config.json in Homebridge directory:
     "accessory": "MiHeaterCooler",
     "name": "AC Partner",
     "address": "192.168.1.154",
+    "Manufacturer": "Aqara",
+    "Model": "KTBL11LM",
     "token": "71b4e85d8527aab32c8f9175124c0d59",
     "sensorId": "158d0001a4c582",
-    "enableLED": true,
+    "enableLED": false,
     "ratedPower": 735
   }
 ]
 ```
 
-| Parameter | Description | Required |
+| 参数 | 描述 | 必须配置 |
 |-|-|:-:|
-| `accessory`  | "MiHeaterCooler"                                                                     | ✓ |
-| `name`       | unique name                                                                          | ✓ |
-| `address`    | your AC partner ip address                                                           | ✓ |
-| `token`      | run `miio --discover` to get it                                                      | ✓ |
-| `sensorId`   | humidity-temperature sensor (bound to your AC partner) id. run `miio --control yourACPartnerIP --method get_device_prop --params '["lumi.0", "device_list"]'` to get it (without 'lumi.' prefix) ||
-| `enableLED`  | true or 'true' to enable LED control                                                 ||
-| `ratedPower` | Watt, your AC Normal Rated Power, used for displaying power percent by battery level ||
-| `idlePower`  | Watt, determine whether current working state is idle, default value is 100          ||
+| `accessory`  | "MiHeaterCooler"                              | ✓ |
+| `name`       | 名称唯一                                       | ✓ |
+| `address`    | 空调伴侣的 ip 地址                              | ✓ |
+| `token`      | 执行 `miio --discover` 命令获取, 或者使用[Get_MiHome_devices_token](https://github.com/Maxmudjon/Get_MiHome_devices_token)                | ✓ |
+| `Manufacturer`  | 用于显示设备生产商信息，默认为Aqara       | ✓ |
+| `Model`  | 用于显示设备型号信息，默认为二代空调伴侣       | ✓ |
+| `sensorId`   | 温湿度传感器 (必须绑定到此空调伴侣) id。执行 `miio --control 空调伴侣ip --method get_device_prop --params '["lumi.0", "device_list"]'` 命令获取（去除 'lumi.' 前缀）||
+| `enableLED`  | true 或 'true'                                ||
+| `ratedPower` | 瓦，空调额定功率，用于以「电池电量」显示当前功率百分比 ||
+| `idlePower`  | 瓦，用于判定当前是否处于空闲状态，默认值为 100       ||
 
-## Extra
 
-Auto supports most of brands set 1 solution
+## 其它
 
-Otherwise, you should use an Android simulator (like [BlueStacks](http://www.bluestacks.com)) and [Wireshark](https://www.wireshark.org) to collect and analyze your AC partner command codes by `miio --token yourACPartnerToken --json-dump packetFile`, then modify `template.json` in plugin directory
+自动支持大部分品牌的第一套预设方案
+
+否则, 你可以用 Android 模拟器（如 [BlueStacks](http://www.bluestacks.com)）和抓包工具 [Wireshark](https://www.wireshark.org) 抓取并分析空调伴侣的命令码（执行 `miio --token 空调伴侣token --json-dump 报文` 命令获取），然后修改位于插件目录下的 `template.json` 文件
 
 ```json
 {
@@ -97,26 +114,26 @@ Otherwise, you should use an Android simulator (like [BlueStacks](http://www.blu
 }
 ```
 
-The key is your current AC partner solution model, you can get it by `miio --control yourACPartnerIP --method get_model_and_state`
+主键是空调伴侣的 model，执行 `miio --control 空调伴侣ip --method get_model_and_state` 命令获取
 
-"tpl" is this model's command template, you can use ES6 Template Literals with these params:
+tpl 是该 model 的命令模板，用 ES6 模板字符串编写，可用以下变量：
 
 ```js
 /**
- * generate command
+ * 生成命令码
  *
- * if your ac partner sends commands like 01xxxxxxxxpmwstlx (most of brands set 1 do)
- * then you don't need template config
+ * 如果你的方案下空调伴侣发出的命令形如 01xxxxxxxxpmwstlx（正如大部分品牌第一套预设方案一样）
+ * 则无须此配置
  *
- * template uses ES6 Template Literals to generate commands
- * supports +, -, *, /, %, ?:, [], toString(16) and so on
+ * 用 ES6 模板字符串编写
+ * 支持 +, -, *, /, %, ?:, [], toString(16) 等运算
  *
- * @param p  number power       0 : off, 1 : on
- * @param m  number mode        0 : heat, 1 : cool, 2 : auto
- * @param w  number wind speed  0 : low, 1 : medium, 2 : high, 3 : auto
- * @param s  number swing       0 : enabled, 1 : disabled
- * @param td number temperature decimal
- * @param th string temperature hexadecimal
- * @param l  string led         '0' : on, 'a' : off
+ * @param p  number 开关 0 : 关, 1 : 开
+ * @param m  number 模式 0 : 制热, 1 : 制冷, 2 : 自动
+ * @param w  number 风速 0 : 低, 1 : 中, 2 : 高, 3 : 自动
+ * @param s  number 摆动 0 : 关, 1 : 开
+ * @param td number 温度 十进制
+ * @param th string 温度 十六进制
+ * @param l  string 灯光 '0' : 开, 'a' : 关
  */
 ```

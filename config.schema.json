@@ -1,0 +1,81 @@
+{
+  "pluginAlias": "MiAqaraACCooler",
+  "pluginType": "accessory",
+  "headerDisplay": "A homebridge plugin for Mi/Aqara AC Partner",
+  "footerDisplay": "This project is based on jayqizone/homebridge-mi-heatercooler.",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Device name",
+        "type": "string",
+        "description": "Name you want to show in Home app",
+        "required": true
+      },
+      "address": {
+        "title": "IP address",
+        "type": "string",
+        "default": "192.168.X.X",
+        "description": "IP address of your AC Partner.",
+        "required": true
+      },
+        "token": {
+        "title": "Token",
+        "description": "AC Partner's token.",
+        "type": "string",
+        "required": true
+      },
+        "Manufacturer": {
+        "title": "Manufacturer",
+        "description": "AC Partner's Manufacturer.",
+        "type": "string",
+        "default": "Aqara",
+        "oneOf": [
+          { "title": "Aqara", "enum": ["Aqara"] },
+          { "title": "XiaoMi", "enum": ["Lumi United Technology Co., Ltd."] }
+        ],
+        "required": true
+      },
+        "Model": {
+        "title": "Model",
+        "description": "AC Partner's Model.",
+        "type": "string",
+        "default": "KTBL11LM",
+        "oneOf": [
+          { "title": "Aqara AC Partner V3", "enum": ["KTBL11LM"] },
+          { "title": "XiaoMi AC Partner V2", "enum": ["KTBL02LM"] }
+        ],
+        "required": true
+      },
+        "showSID": {
+        "title": "Use EXTERNAL humidity-temperature sensor",
+        "description": "Show room temperature and humidity with a bound zigbee sensor.",
+        "type": "boolean"
+      },
+        "sensorId": {
+        "title": "Sensor ID",
+        "type": "string",
+        "required": true,
+        "condition": {
+            "functionBody": "return model.showSID === true;"
+        }
+      },
+        "enableLED": {
+        "title": "Enable LED",
+        "type": "boolean"
+      },
+        "ratedPower": {
+        "title": "Rated Power (Watt)",
+        "type": "integer",
+        "required": false
+      },
+      "idlePower": {
+      "title": "idle Power (Watt)",
+      "type": "integer",
+      "description": "AC power lower this value will show in idle state (green icon).",
+      "default":100,
+      "required": true
+      }
+    }
+  }
+}

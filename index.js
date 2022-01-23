@@ -7,10 +7,10 @@ module.exports = function (homebridge) {
     Service = homebridge.hap.Service;
     Characteristic = homebridge.hap.Characteristic;
 
-    homebridge.registerAccessory('homebridge-mi-heatercooler', 'MiHeaterCooler', MiHeaterCooler);
+    homebridge.registerAccessory('homebridge-Xiaomi-Aqara-AC-Cooler', 'MiAqaraACCooler', MiAqaraACCooler);
 }
 
-class MiHeaterCooler {
+class MiAqaraACCooler {
     constructor(log, config) {
         this.log = log;
 
@@ -18,6 +18,8 @@ class MiHeaterCooler {
         this.name = config.name || 'AC Partner';
         this.token = config.token;
         this.address = config.address;
+        this.Manufacturer = config.Manufacturer;
+        this.Model = config.Model;
         this.enableLED = config.enableLED + '' === 'true'; // enable led control
         this.sensorId = config.sensorId; // humidity-temperature-pressure sensor id
         this.ratedPower = config.ratedPower; // Watt, used for fake BatteryService
@@ -75,11 +77,6 @@ class MiHeaterCooler {
             this.services.push(this.ledService);
         }
 
-        if (this.sensorId) {
-            this.humidityService = new Service.HumiditySensor(this.name);
-            this.services.push(this.humidityService);
-        }
-
         if (this.ratedPower) {
             this.powerService = new Service.BatteryService(this.name);
             this.services.push(this.powerService);
@@ -88,8 +85,8 @@ class MiHeaterCooler {
         this.serviceInfo = new Service.AccessoryInformation();
 
         this.serviceInfo
-            .setCharacteristic(Characteristic.Manufacturer, 'Mi')
-            .setCharacteristic(Characteristic.Model, 'Heater Cooler')
+            .setCharacteristic(Characteristic.Manufacturer, this.Manufacturer)
+            .setCharacteristic(Characteristic.Model, this.Model)
             .setCharacteristic(Characteristic.SerialNumber, this.address);
         this.services.push(this.serviceInfo);
     }
@@ -99,6 +96,11 @@ class MiHeaterCooler {
             .on('set', this._setActive.bind(this));
 
         this.TargetHeaterCoolerState = this.acService.getCharacteristic(Characteristic.TargetHeaterCoolerState)
+            .setProps({                                                    
+                validValues: [2],                                     
+                current: [0,2],                                     
+                target:[2]                                                   
+                })                                                        
             .on('set', this._setTargetHeaterCoolerState.bind(this));
 
         this.CoolingThresholdTemperature = this.acService.addCharacteristic(Characteristic.CoolingThresholdTemperature)
@@ -140,8 +142,13 @@ class MiHeaterCooler {
         }
 
         if (this.sensorId) {
-            this.CurrentRelativeHumidity = this.humidityService.getCharacteristic(Characteristic.CurrentRelativeHumidity);
-        }
+            this.CurrentRelativeHumidity = this.acService.addCharacteristic(Characteristic.CurrentRelativeHumidity)
+                .setProps({                                                                                    
+                maxValue: 100,                                                                                     
+                minValue: 0,                                                                                       
+                minStep: 1                                                                                             
+            })                                                                                                         
+        }      
 
         if (this.ratedPower) {
             this.ChargingState = this.powerService.getCharacteristic(Characteristic.ChargingState);
